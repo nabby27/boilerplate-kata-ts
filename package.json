@@ -1,0 +1,35 @@
+{
+  "name": "kata_boilerplate_ts",
+  "version": "0.0.1",
+  "description": "Template for katas in typescript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Iván Córdoba Donet",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "eslint:check": "npx eslint './src/**'",
+    "eslint:fix": "npx eslint './src/**' --fix",
+    "test": "npx jest",
+    "test:watch": "npx jest --watchAll",
+    "test:coverage": "npx jest --coverage",
+    "test:all": "npm run eslint:fix && npm run test:coverage"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.12.38",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4",
+    "typescript": "^3.7.5"
+  }
+}
