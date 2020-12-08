@@ -1,6 +1,6 @@
 .PHONY: up stop build install test test-watch test-coverage test-all eslint-check eslint-fix
 
-CONTAINER_NAME=kata_boilerplate_ts
+CONTAINER_NAME=boilerplate_kata_ts
 
 up:
 	@docker-compose up -d

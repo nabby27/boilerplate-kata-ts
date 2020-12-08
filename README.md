@@ -35,7 +35,7 @@ make test
 
 ```sh
 docker-compose up -d
-docker-compose exec kata_boilerplate_ts npm run test
+docker-compose exec boilerplate_kata_ts npm run test
 dokcer-compose down
 ```
 

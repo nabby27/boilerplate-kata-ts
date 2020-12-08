@@ -1,5 +1,5 @@
 {
-  "name": "kata_boilerplate_ts",
+  "name": "boilerplate_kata_ts",
   "version": "0.0.1",
   "description": "Template for katas in typescript",
   "main": "dist/index.js",

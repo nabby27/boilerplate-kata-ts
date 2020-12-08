@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  kata_boilerplate_ts:
+  boilerplate_kata_ts:
     image: "node:14-alpine"
-    container_name: "kata_boilerplate_ts"
+    container_name: "boilerplate_kata_ts"
     working_dir: "/usr/src/app"
     volumes:
       - ./:/usr/src/app:rw,Z
