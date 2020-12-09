@@ -12,6 +12,7 @@
     "eslint:fix": "npx eslint './src/**' --fix",
     "test": "npx jest",
     "test:watch": "npx jest --watchAll",
+    "test:watch:coverage": "npx jest --watchAll --coverage",
     "test:coverage": "npx jest --coverage",
     "test:all": "npm run eslint:fix && npm run test:coverage"
   },

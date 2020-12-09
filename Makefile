@@ -1,4 +1,4 @@
-.PHONY: up stop build install test test-watch test-coverage test-all eslint-check eslint-fix
+.PHONY: up stop build install test test-watch test-watch-coverage test-coverage test-all eslint-check eslint-fix
 
 CONTAINER_NAME=boilerplate_kata_ts
 
@@ -22,6 +22,10 @@ test: up
 
 test-watch: up
 	@docker-compose exec $(CONTAINER_NAME) npm run test:watch || $(MAKE) stop
+	$(MAKE) stop
+
+test-watch-coverage: up
+	@docker-compose exec $(CONTAINER_NAME) npm run test:watch:coverage || $(MAKE) stop
 	$(MAKE) stop
 
 test-coverage: up
