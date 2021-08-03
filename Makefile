@@ -1,46 +1,35 @@
-.PHONY: up stop build install test test-watch test-watch-coverage test-coverage test-all eslint-check eslint-fix
-
 CONTAINER_NAME=boilerplate_kata_ts
 
-up:
-	@docker-compose up -d
+.PHONY: build
+build:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run build
 
-stop:
-	@docker-compose down
+install:
+	@docker-compose run --rm $(CONTAINER_NAME) npm install $(ARGS)
 
-build: up
-	@docker-compose exec $(CONTAINER_NAME) npm run build || $(MAKE) stop
-	${MAKE} stop
+.PHONY: test
+test:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test
 
-install: up
-	@docker-compose exec $(CONTAINER_NAME) npm install $(ARGS) || $(MAKE) stop
-	${MAKE} stop
-
-test: up
-	@docker-compose exec $(CONTAINER_NAME) npm run test || $(MAKE) stop
-	${MAKE} stop
-
-test-watch: up
-	@docker-compose exec $(CONTAINER_NAME) npm run test:watch || $(MAKE) stop
+test-watch:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:watch
 	$(MAKE) stop
 
-test-watch-coverage: up
-	@docker-compose exec $(CONTAINER_NAME) npm run test:watch:coverage || $(MAKE) stop
+test-watch-coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:watch:coverage
 	$(MAKE) stop
 
-test-coverage: up
-	@docker-compose exec $(CONTAINER_NAME) npm run test:coverage || $(MAKE) stop
-	@docker-compose exec $(CONTAINER_NAME) chown -R node:node coverage
+test-coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
 	$(MAKE) stop
 
-test-all: up
-	@docker-compose exec $(CONTAINER_NAME) npm run test:all
+test-all:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all
 	$(MAKE) stop
 
-eslint-check: up
-	@docker-compose exec $(CONTAINER_NAME) npm run eslint:check || $(MAKE) stop
-	${MAKE} stop
+eslint-check:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:check
 	
-eslint-fix: up
-	@docker-compose exec $(CONTAINER_NAME) npm run eslint:fix || $(MAKE) stop
-	${MAKE} stop
+eslint-fix:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:fix
