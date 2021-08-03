@@ -7,6 +7,12 @@ build:
 install:
 	@docker-compose run --rm $(CONTAINER_NAME) npm install $(ARGS)
 
+eslint-check:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:check
+	
+eslint-fix:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:fix
+
 .PHONY: test
 test:
 	@docker-compose run --rm $(CONTAINER_NAME) npm run test
@@ -27,9 +33,3 @@ test-coverage:
 test-all:
 	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all
 	$(MAKE) stop
-
-eslint-check:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:check
-	
-eslint-fix:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:fix
