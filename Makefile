@@ -7,29 +7,70 @@ build:
 install:
 	@docker-compose run --rm $(CONTAINER_NAME) npm install $(ARGS)
 
-eslint-check:
+update:
+	@docker-compose run --rm $(CONTAINER_NAME) npm update
+
+upgrade:
+	@docker-compose run --rm $(CONTAINER_NAME) npm upgrade
+
+eslint/check:
 	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:check
 	
-eslint-fix:
+eslint/fix:
 	@docker-compose run --rm $(CONTAINER_NAME) npm run eslint:fix
 
-.PHONY: test
-test:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run test
-
-test-watch:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run test:watch
-	$(MAKE) stop
-
-test-watch-coverage:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run test:watch:coverage
-	$(MAKE) stop
-
-test-coverage:
-	@docker-compose run --rm $(CONTAINER_NAME) npm run test:coverage
+test/unit:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:unit
+	
+test/unit/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:unit:coverage
 	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
-	$(MAKE) stop
 
-test-all:
+test/unit/watch:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:unit:watch
+
+test/unit/watch/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:unit:watch:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/integration:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:integration
+	
+test/integration/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:integration:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/integration/watch:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:integration:watch
+
+test/integration/watch/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:integration:watch:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/e2e:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:e2e
+	
+test/e2e/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:e2e:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/e2e/watch:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:e2e:watch
+
+test/e2e/watch/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:e2e:watch:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/all:
 	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all
-	$(MAKE) stop
+	
+test/all/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage
+
+test/all/watch:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all:watch
+
+test/all/watch/coverage:
+	@docker-compose run --rm $(CONTAINER_NAME) npm run test:all:watch:coverage
+	@docker-compose run --rm $(CONTAINER_NAME) chown -R node:node coverage

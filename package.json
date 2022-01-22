@@ -8,13 +8,29 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
+    
     "eslint:check": "npx eslint './src/**'",
     "eslint:fix": "npx eslint './src/**' --fix",
-    "test": "npx jest",
-    "test:watch": "npx jest --watchAll",
-    "test:watch:coverage": "npx jest --watchAll --coverage",
-    "test:coverage": "npx jest --coverage",
-    "test:all": "npm run eslint:fix && npm run test:coverage"
+    
+    "test:unit": "npx jest test/unit",
+    "test:unit:coverage": "npx jest test/unit --coverage",
+    "test:unit:watch": "npx jest test/unit --watchAll",
+    "test:unit:watch:coverage": "npx jest test/unit --watchAll --coverage",
+    
+    "test:integration": "npx jest test/integration",
+    "test:integration:coverage": "npx jest test/integration --coverage",
+    "test:integration:watch": "npx jest test/integration --watchAll",
+    "test:integration:watch:coverage": "npx jest test/integration --watchAll --coverage",
+    
+    "test:e2e": "npx jest test/e2e",
+    "test:e2e:coverage": "npx jest test/e2e --coverage",
+    "test:e2e:watch": "npx jest test/e2e --watchAll",
+    "test:e2e:watch:coverage": "npx jest test/e2e --watchAll --coverage",
+    
+    "test:all": "npx jest",
+    "test:all:coverage": "npx jest --coverage",
+    "test:all:watch": "npx jest --watchAll",
+    "test:all:watch:coverage": "npx jest --watchAll --coverage"
   },
   "files": [
     "dist"
@@ -25,12 +41,12 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.1.4",
-    "@types/node": "^12.12.38",
+    "@types/node": "^12.20.42",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "eslint": "^6.8.0",
     "jest": "^26.6.3",
-    "ts-jest": "^26.4.4",
-    "typescript": "^3.7.5"
+    "ts-jest": "^26.5.6",
+    "typescript": "^3.9.10"
   }
 }
